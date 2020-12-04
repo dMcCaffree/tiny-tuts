@@ -6,10 +6,9 @@ export default {
     screens: {
       Root: {
         screens: {
-          TabOne: {
-            screens: {
-              TabOneScreen: 'one',
-            },
+          Learn: {
+            LearnScreen: 'learn',
+            CourseScreen: 'course',
           },
           TabTwo: {
             screens: {

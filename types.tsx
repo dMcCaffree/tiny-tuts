@@ -1,11 +1,17 @@
 export type RootStackParamList = {
   Root: undefined;
+  Overlay: undefined;
   NotFound: undefined;
 };
 
 export type BottomTabParamList = {
-  TabOne: undefined;
-  TabTwo: undefined;
+  Learn: undefined;
+  Discover: undefined;
+  Profile: undefined;
+};
+
+export type OverlayParamList = {
+  CourseScreen: undefined;
 };
 
 export type TabOneParamList = {
@@ -15,3 +21,9 @@ export type TabOneParamList = {
 export type TabTwoParamList = {
   TabTwoScreen: undefined;
 };
+
+export type LearnParamList = {
+  LearnScreen: undefined;
+  CourseScreen: undefined;
+};
+
