@@ -3,6 +3,7 @@ import {Dimensions, Image, StyleSheet, TouchableOpacity} from "react-native";
 import React from "react";
 import {Link} from '@react-navigation/native';
 import {useNavigation} from '@react-navigation/native';
+import formatNumber from '../helpers/formatNumber';
 
 export default function CourseCard(
   { to, thumbnailImage, authorName, authorAvatar, students, isEnrolled, courseId }:
@@ -28,7 +29,7 @@ export default function CourseCard(
             <Text style={[styles.name]}>{authorName}</Text>
           </TouchableOpacity>
           <View style={styles.group}>
-            <Text style={styles.students}>{`${students} Students`}</Text>
+            <Text style={styles.students}>{`${formatNumber(students)} Students`}</Text>
           </View>
         </View>
       </View>

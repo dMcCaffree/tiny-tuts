@@ -32,23 +32,23 @@ export default function CourseScreen() {
   }, []);
 
   const updateVideoPosition = (e: any) => {
-    setPercentComplete(Math.round((e.positionMillis / e.durationMillis * 10) * 100) / 10);
+    setPercentComplete(Math.round((e.positionMillis / e.durationMillis * 100) * 100) / 100);
     setCurrentSpot(e.positionMillis);
-  }
+  };
 
   const pauseVideo = () => {
-    if (videoElement) {
+    if (videoElement && videoElement.current) {
+      // @ts-ignore
       videoElement.current.pauseAsync();
     }
   };
 
   const playVideo = () => {
-    if (videoElement) {
+    if (videoElement && videoElement.current) {
+      // @ts-ignore
       videoElement.current.playAsync();
     }
-  }
-
-  console.log(percentComplete);
+  };
 
   return (
     <View style={[styles.container, {height, width}]}>
@@ -87,7 +87,7 @@ export default function CourseScreen() {
           isLooping={false}
           onLoad={() => setIsLoading(false)}
           onPlaybackStatusUpdate={updateVideoPosition}
-          progressUpdateIntervalMillis={30}
+          progressUpdateIntervalMillis={60}
           ref={videoElement}
         />
       </TouchableWithoutFeedback>

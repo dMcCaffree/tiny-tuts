@@ -28,7 +28,7 @@ export default function LearnScreen() {
       },
       title: 'Design Basics',
       thumbnailImage: 'https://i.ibb.co/thkZ8ZP/thumbnail-2.png',
-      students: 21299,
+      students: 21209,
       id: 'bf2311cda3de',
       isEnrolled: false,
     }
