@@ -1,9 +1,19 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {StyleSheet, ScrollView, TouchableOpacity, Image, Dimensions, TouchableWithoutFeedback} from 'react-native';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Dimensions,
+  TouchableWithoutFeedback,
+  TextInput,
+  KeyboardAvoidingView,
+  Keyboard,
+} from 'react-native';
 import {Video} from "expo-av";
 import {useNavigation} from '@react-navigation/native';
 import CloseIcon from '../assets/images/close.png';
 import {Text, View} from '../components/Themed';
+import {LinearGradient} from 'expo-linear-gradient';
 
 export default function CourseScreen() {
   const videoElement = useRef(null);
@@ -72,9 +82,15 @@ export default function CourseScreen() {
         <Image source={CloseIcon}/>
       </TouchableOpacity>
       {isLoading && <Image source={{uri: thumbnailUri}} style={[styles.videoOverlay, {height, width}]}/>}
+      <KeyboardAvoidingView style={styles.commentBox} behavior="position">
+        <LinearGradient colors={['transparent', 'rgba(0,0,0,.4)', 'rgba(0,0,0,.5)']} style={styles.gradient}>
+        <TextInput placeholder="Write a comment or note..." style={styles.input} placeholderTextColor="#ffffff" onFocus={pauseVideo} onBlur={playVideo} />
+        </LinearGradient>
+      </KeyboardAvoidingView>
       <TouchableWithoutFeedback
         onPressIn={pauseVideo}
         onPressOut={playVideo}
+        onPress={() => Keyboard.dismiss()}
       >
         <Video
           source={{uri: videoUri}}
@@ -127,19 +143,19 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   avatar: {
-    height: 50,
-    width: 50,
+    height: 40,
+    width: 40,
     borderRadius: 30,
     marginRight: 10,
   },
   name: {
     color: '#ffffff',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
   },
   students: {
     color: '#ffffff',
-    fontSize: 16,
+    fontSize: 14,
   },
   row: {
     flexDirection: 'row',
@@ -168,5 +184,36 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     zIndex: -1,
-  }
+  },
+  commentBox: {
+    bottom: 0,
+    left: 0,
+    right: 0,
+    position: 'absolute',
+    backgroundColor: 'transparent',
+    paddingTop: 100,
+  },
+  gradient: {
+    position: 'relative',
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: 'white',
+    backgroundColor: 'transparent',
+    color: 'white',
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 50,
+    marginBottom: 40,
+    marginRight: 20,
+    marginLeft: 20,
+    fontSize: 16,
+    marginTop: 30,
+  },
+  inputPlaceholder: {
+    color: 'white',
+  },
 });
